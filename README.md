@@ -25,7 +25,14 @@ TODO: Harmony injection modding
 Go to the [Releases](https://github.com/wulkanat/2weistein-Speedrun-Mod/releases) and download the latest version.
 Then use the included DLLs to replace the files in the `Data` folder of your game's directory.
 
-*Note: for now, only the re-released 3.0 version is suppored*
+Game Version Support
+| Version | Support |
+| ------- | ------- |
+| `Neuauflage DE v3.0 Build 144` | Full Support |
+| `Neuauflage EN v3.0 Build 144` | Full Support |
+| `Standard DE v1.0 Build 077` | Planned |
+| `Power DE` | Maybe |
+| Other | On Request |
 
 ## Changes
 
