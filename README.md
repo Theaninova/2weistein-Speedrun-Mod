@@ -18,12 +18,12 @@ TODO: Harmony injection modding
 * Removed Bonus Dialog
 * Added Sub-seconds to stats dialog
 * Swapped distance travelled to total run time on stats dialog
+* Fixed Spinning Camera Bug (Removes Ability to control the camera X-Axis with a controller
 * Added stats dialog to final boss level
 
 ## Planned Features
 
 * Run Comparison
-* Spinning Camera Fix
 * 1080p Resolution Fix
 
 ## Installation
@@ -97,5 +97,21 @@ public void Update()
     this.fps.text = "Time: " + Time.timeSinceLevelLoad.ToString().PadLeft(7);
     this.bg1.text = this.fps.text;
     this.bg2.text = this.fps.text;
+}
+```
+### `InputEx`
+```cs
+public static float GetAxis(string axis)
+{
+    ...
+    else if (axis == "Mouse X")
+    {
+        num = Input.GetAxis(axis);
+        // remove controller controls
+        num2 *= Mathf.Abs(num2);
+        InputEx.gamepadEvent = (num2 != 0f);
+        num += num2;
+    }
+    ...
 }
 ```
