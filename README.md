@@ -20,19 +20,25 @@ TODO: Harmony injection modding
 * Swapped distance travelled to total run time on stats dialog
 * Added stats dialog to final boss level
 
+## Planned Features
+
+* Run Comparison
+* Spinning Camera Fix
+* 1080p Resolution Fix
+
 ## Installation
 
 Go to the [Releases](https://github.com/wulkanat/2weistein-Speedrun-Mod/releases) and download the latest version.
 Then use the included DLLs to replace the files in the `Data` folder of your game's directory.
 
 Game Version Support
-| Version | Support |
-| ------- | ------- |
-| `Neuauflage DE v3.0 Build 144` | Full Support |
-| `Neuauflage EN v3.0 Build 144` | Full Support |
-| `Standard DE v1.0 Build 077` | Planned |
-| `Power DE` | Maybe |
-| Other | On Request |
+| Version | Support | Notes |
+| ------- | ------- | ----- |
+| `Neuauflage DE v3.0 Build 144` | <ul><li>- [x] </li></ul> |  |
+| `Neuauflage EN v3.0 Build 144` | <ul><li>- [x] </li></ul> | Untested |
+| `Standard DE v1.0 Build 077` | <ul><li>- [ ] </li></ul> | Planned |
+| `Power DE` | <ul><li>- [ ] </li></ul> | Maybe |
+| Other | <ul><li>- [ ] </li></ul> | On Request |
 
 ## Changes
 
