@@ -63,7 +63,7 @@ public void Update()
         // we use this as an indicator that the level was skipped
         SceneManagerState.isMiniGame = true;
         SceneManagerState.Load();
-
+```
 ### `SceneManager`
 
 ```cs
