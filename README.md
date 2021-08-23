@@ -107,13 +107,7 @@ public void Start()
     {
         totalTime += float.Parse(inifile.ReadValue(entry, "Time", "0"));
     }
-    INIFile bestfile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
-    float best = 0f;
-    foreach (string entry in bestfile.GetSectionList())
-    {
-        best += float.Parse(inifile.ReadValue(entry, "Time", "0"));
-    }
-    float delta = totalTime - best;
+    float delta = totalTime - float.Parse(new INIFile(Application.dataPath + "/SaveGames/best.ini").ReadValue("Total", "Time", "999"));
     text = this.FormatTime(totalTime, true) + " (" + (delta > 0 ? "+" : "-") + this.FormatTime(Math.Abs(delta), true) + ")";
 ```
 ### `FrameCount`
