@@ -69,29 +69,29 @@ public void Update()
 ```cs
 public void Load()
 {
-    GameState.currentState = States.gui;
-    if (!SceneManagerState.currentLevel.isCutScene) // remove endboss check
-          // save time until level finished, but only if the level hasn't been skipped
-          if (!SceneManagerState.isMiniGame)
-          {
-			INIFile inifile = new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
-			float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
-			float totalTime = current;
-			foreach (object obj in inifile.GetSectionList())
-			{
-				string entry = (string)obj;
-				totalTime += float.Parse(inifile.ReadValue(entry, "Time", "0"));
-			}
-			inifile.WriteValue(SceneManagerState.currentLevel.key, "Time", current.ToString());
-			inifile.WriteValue(SceneManagerState.currentLevel.key, "Total", totalTime.ToString());
-			inifile.Save(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
-          }
-          else
-          {
-              SceneManagerState.isMiniGame = false;
-          }
-          // skip bonus dialog
-          this.dialog = (GameObject)UnityEngine.Object.Instantiate(Resources.Load("GUI/LevelStatistic/LevelStatisticDialog", typeof(GameObject)), new Vector3(0.5f, 0.5f, 1f), Quaternion.identity);
+  GameState.currentState = States.gui;
+  if (!SceneManagerState.currentLevel.isCutScene) // remove endboss check
+  // save time until level finished, but only if the level hasn't been skipped
+    if (!SceneManagerState.isMiniGame)
+    {
+      INIFile inifile = new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
+      float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
+      float totalTime = current;
+      foreach (object obj in inifile.GetSectionList())
+      {
+        string entry = (string)obj;
+        totalTime += float.Parse(inifile.ReadValue(entry, "Time", "0"));
+      }
+      inifile.WriteValue(SceneManagerState.currentLevel.key, "Time", current.ToString());
+      inifile.WriteValue(SceneManagerState.currentLevel.key, "Total", totalTime.ToString());
+      inifile.Save(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
+    }
+    else
+    {
+      SceneManagerState.isMiniGame = false;
+    }
+    // skip bonus dialog
+    this.dialog = (GameObject)UnityEngine.Object.Instantiate(Resources.Load("GUI/LevelStatistic/LevelStatisticDialog", typeof(GameObject)), new Vector3(0.5f, 0.5f, 1f), Quaternion.identity);
 ```
 ### `LevelStatisticHandler`
 
@@ -101,44 +101,44 @@ public void Start()
   ...
   else if (num3 == 6)
   {
-							float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
-							INIFile bestfile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
-							float delta = current - float.Parse(bestfile.ReadValue(SceneManagerState.currentLevel.key, "Time", "999"));
-							text = string.Concat(new string[]
-							{
-								this.FormatTime(current, true),
-								" (",
-								(delta > 0f) ? "+" : "-",
-								this.FormatTime(Math.Abs(delta), true),
-								")"
-							});
-							INIFile bestFile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
-							if (delta < 0f)
-							{
-								bestFile.WriteValue(SceneManagerState.currentLevel.key, "Time", current.ToString());
-								bestFile.Save(Application.dataPath + "/SaveGames/best.ini");
-							}
+    float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
+    INIFile bestfile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
+    float delta = current - float.Parse(bestfile.ReadValue(SceneManagerState.currentLevel.key, "Time", "999"));
+    text = string.Concat(new string[]
+    {
+      this.FormatTime(current, true),
+      " (",
+      (delta > 0f) ? "+" : "-",
+      this.FormatTime(Math.Abs(delta), true),
+      ")"
+    });
+    INIFile bestFile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
+    if (delta < 0f)
+    {
+      bestFile.WriteValue(SceneManagerState.currentLevel.key, "Time", current.ToString());
+      bestFile.Save(Application.dataPath + "/SaveGames/best.ini");
+    }
   }
   else if (num3 == 7)
   {
     // swap distance travelled to total time took
-							INIFile iNIFile = new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
-							float total = float.Parse(iNIFile.ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
-							float delta2 = total - float.Parse(new INIFile(Application.dataPath + "/SaveGames/best_full.ini").ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
-							text = string.Concat(new string[]
-							{
-								this.FormatTime(total, true),
-								" (",
-								(delta2 > 0f) ? "+" : "-",
-								this.FormatTime(Math.Abs(delta2), true),
-								")"
-							});
-							INIFile bestFile2 = new INIFile(Application.dataPath + "/SaveGames/best_full.ini");
-							if (delta2 < 0f && SceneManagerState.currentLevel.key == "19_GodronEndBoss")
-							{
-							// save the complete run
-								iNIFile.Save(Application.dataPath + "/SaveGames/best_full.ini");
-							}
+    INIFile iNIFile = new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
+    float total = float.Parse(iNIFile.ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
+    float delta2 = total - float.Parse(new INIFile(Application.dataPath + "/SaveGames/best_full.ini").ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
+    text = string.Concat(new string[]
+    {
+      this.FormatTime(total, true),
+      " (",
+      (delta2 > 0f) ? "+" : "-",
+      this.FormatTime(Math.Abs(delta2), true),
+      ")"
+    });
+    INIFile bestFile2 = new INIFile(Application.dataPath + "/SaveGames/best_full.ini");
+    if (delta2 < 0f && SceneManagerState.currentLevel.key == "19_GodronEndBoss")
+    {
+      // save the complete run
+      iNIFile.Save(Application.dataPath + "/SaveGames/best_full.ini");
+    }
 ```
 ### `FrameCount`
 
