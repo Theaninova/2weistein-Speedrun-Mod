@@ -93,11 +93,9 @@ public void Start()
   ...
   else if (num3 == 6)
   {
-    text = LNG.Get("GLB_STATISTIC_TIME", "Benötigte Zeit: {0}");
-		float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
-		INIFile bestfile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
-		float best = float.Parse(bestfile.ReadValue(SceneManagerState.currentLevel.key, "Time", "999"));
-		text = this.FormatTime(current, true) + " (" + this.FormatTime(current - best, true) + ")"; // changed parameter to `true` to include fractions
+    float current = Time.timeSinceLevelLoad + LevelStatistic.addTime;
+    float delta = current - float.Parse(new INIFile(Application.dataPath + "/SaveGames/best.ini").ReadValue(SceneManagerState.currentLevel.key, "Time", "999"));
+    text = this.FormatTime(current, true) + " (" + (delta > 0 ? "+" : "-") + this.FormatTime(Math.Abs(delta), true) + ")";
   }
   else if (num3 == 7)
   {
@@ -110,12 +108,13 @@ public void Start()
         totalTime += float.Parse(inifile.ReadValue(entry, "Time", "0"));
     }
     INIFile bestfile = new INIFile(Application.dataPath + "/SaveGames/best.ini");
-		float best = 0f;
-		foreach (string entry in bestfile.GetSectionList())
-		{
+    float best = 0f;
+    foreach (string entry in bestfile.GetSectionList())
+    {
         best += float.Parse(inifile.ReadValue(entry, "Time", "0"));
-		}
-    text = this.FormatTime(totalTime, true) + " (" + this.FormatTime(totalTime - best, true) + ")";
+    }
+    float delta = totalTime - best;
+    text = this.FormatTime(totalTime, true) + " (" + (delta > 0 ? "+" : "-") + this.FormatTime(Math.Abs(delta), true) + ")";
 ```
 ### `FrameCount`
 
