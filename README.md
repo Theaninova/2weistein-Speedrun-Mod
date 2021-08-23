@@ -17,8 +17,8 @@ TODO: Harmony injection modding
 * Added a `/Data/SaveGames/[profile]_run.ini` file for each profile that records the level times
 * Removed Bonus Dialog
 * Run Comparison
-  - The game will look for a "best.ini" in the same format as other run files, with an additional `[Total]` key
-  - You will have to maintain the file yourself, so that `F12` level finishes are excluded
+  - The game will look for a "best.ini" in the same format as other run files (except the total keys)
+  - The game will also look for a "best_full.ini" which is the same format as other run files
 * Added Sub-seconds to stats dialog
 * Swapped distance travelled to total run time on stats dialog
 * Fixed Spinning Camera Bug (Removes Ability to control the camera X-Axis with a controller
