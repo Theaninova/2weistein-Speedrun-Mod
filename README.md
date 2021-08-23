@@ -122,7 +122,8 @@ public void Start()
   else if (num3 == 7)
   {
     // swap distance travelled to total time took
-							float total = float.Parse(new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini").ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
+							INIFile iNIFile = new INIFile(Application.dataPath + "/SaveGames/" + Config.profileName + "_run.ini");
+							float total = float.Parse(iNIFile.ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
 							float delta2 = total - float.Parse(new INIFile(Application.dataPath + "/SaveGames/best_full.ini").ReadValue(SceneManagerState.currentLevel.key, "Total", "999"));
 							text = string.Concat(new string[]
 							{
@@ -135,8 +136,8 @@ public void Start()
 							INIFile bestFile2 = new INIFile(Application.dataPath + "/SaveGames/best_full.ini");
 							if (delta2 < 0f && SceneManagerState.currentLevel.key == "19_GodronEndBoss")
 							{
-								bestFile2.WriteValue(SceneManagerState.currentLevel.key, "Time", total.ToString());
-								bestFile2.Save(Application.dataPath + "/SaveGames/best_full.ini");
+							// save the complete run
+								iNIFile.Save(Application.dataPath + "/SaveGames/best_full.ini");
 							}
 ```
 ### `FrameCount`
